@@ -19,3 +19,8 @@ class Currency
      false
     end
   end
+  
+  def Different_Current_Code
+
+    raise UnknownCurrencyCodeError
+  end
