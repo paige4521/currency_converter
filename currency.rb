@@ -77,11 +77,11 @@ class Currency
                             #memory as amount...see initialize when we say @amount = amount
                             #http://strugglingwithruby.blogspot.com/2010/04/operator-overloading.html
 
-      if  @currency_symb == currency_object.currency_symb && currency_object.value.is_a?Float
+      if  @currency_symb == currency_object.currency_symb && @amont.value.is_a?Float
         true
          Currency.new(@amount *currency_object.amount)
       elsif
-        @currency_symb == currency_object.currency_symb && currency_object.value.is_a?Fixnum
+        @currency_symb == currency_object.currency_symb && @amount.value.is_a?Fixnum
         false
         Currency.new(@amount *currency_object.amount)
       else
