@@ -4,30 +4,25 @@ class Currency
    #currency_one.amount
   attr_reader :amount, :currency_symb
 
-  def initialize (currency_symb = "", amount) #Did user provide the symbol
-     if currency_symb != ""  #was information passed
-      @amount = amount
-      @currency_symb = currency_symb
+  def initialize (currency_symb = " ", amount) #Did user provide the symbol
+    if currency_symb != " "  #was information passed
+      @amount = amount  #initializing the instance variable
+      @currency_symb = currency_symb #assigns the symbol if something was passed
+      currency_symb_check
     else
-       @currency_amount = amount[0]
-       puts @currency_amount
+      @currency_symb = amount[0]
+      @amount = [1..-1].to_i#amount[0]
+      currency_symb_check
     end
 
   end
 
-  def currency_symb_check
-    if @currency_symb_chk == "$"
-       @currency_symb_chk = :USD
-    elsif @currency_symb_check == "€"
-      @currency_symb_check = :EUR
+  def currency_symb_check #assign a currency symbol to its correct country
+    if @currency_symb == "$"
+       @currency_symb = :USD
+    elsif @urrency_symb == "€"
+      @currency_symb = :EUR
     end
-  end
-
-  def rem_symb # remove symbols present in the amount variable and assign to a country_code
-    rem_symb = @amount[1..-1].to_i
-    @currency_symb = rem_sym #assign rem_symb to the @currency instance variable so that I can assign to the correct country
-    currency_symb_check #I am attempting to run the method currency_symb_check
-
   end
 
   def ==(is_equal) #Compare two of the class objects to each other
@@ -77,12 +72,10 @@ class Currency
                             #memory as amount...see initialize when we say @amount = amount
                             #http://strugglingwithruby.blogspot.com/2010/04/operator-overloading.html
 
-      if  @currency_symb == currency_object.currency_symb && @amont.value.is_a?Float
-        true
+      if  @currency_symb == currency_object.currency_symb
          Currency.new(@amount *currency_object.amount)
       elsif
-        @currency_symb == currency_object.currency_symb && @amount.value.is_a?Fixnum
-        false
+        @currency_symb == currency_object.currency_symb
         Currency.new(@amount *currency_object.amount)
       else
         raise UnknownCurrencyCodeError
@@ -91,4 +84,6 @@ class Currency
 
 end
 
- currency_one = Currency.new.rem_symbol ($532)
+ currency_one = Currency.new("$", 532)
+ puts currency_one.amount
+ puts currency_one.currency_symb
