@@ -10,5 +10,12 @@ class CurrencyConverter
 
 end
 
-texting = CurrencyConverter.new({"USD": 1, "EUR": 2})
-janicejackson = CurrencyConverter.new({USD:10, "EUR": 5})
+ def convert (currency, currency_code)
+   if @currency_hash.has_key?(currency_code)
+     # do the convesion
+   else
+     raise UnknownCurrencyCodeError
+   end
+ end
+
+ 
